@@ -17,8 +17,10 @@ class MainActivity : Activity() {
         browser = findViewById<WebView>(R.id.web_view_main)
         browser?.webViewClient = MyBrowser()
 
+        var headers = mutableMapOf<String, String>()
+        headers["token"] = "123"
 
-        browser?.loadUrl("http://www.google.com")
+        browser?.loadUrl("http://www.google.com", headers)
     }
 
     private class MyBrowser : WebViewClient() {
