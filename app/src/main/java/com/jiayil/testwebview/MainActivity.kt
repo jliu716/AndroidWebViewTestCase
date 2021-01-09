@@ -2,6 +2,7 @@ package com.jiayil.testwebview
 
 import android.app.Activity
 import android.os.Bundle
+import android.webkit.CookieManager
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -21,6 +22,10 @@ class MainActivity : Activity() {
         headers["token"] = "123"
 
         browser?.loadUrl("http://www.google.com", headers)
+
+        // Potential cookie handling
+        CookieManager.getInstance().setAcceptCookie(true);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(browser, true);
     }
 
     private class MyBrowser : WebViewClient() {
