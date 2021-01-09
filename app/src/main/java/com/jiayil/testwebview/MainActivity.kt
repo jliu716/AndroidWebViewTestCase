@@ -2,10 +2,7 @@ package com.jiayil.testwebview
 
 import android.app.Activity
 import android.os.Bundle
-import android.webkit.CookieManager
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 
 class MainActivity : Activity() {
 
@@ -20,7 +17,6 @@ class MainActivity : Activity() {
 
         var headers = mutableMapOf<String, String>()
         headers["token"] = "123"
-
         browser?.loadUrl("http://www.google.com", headers)
 
         // Potential cookie handling
@@ -34,11 +30,17 @@ class MainActivity : Activity() {
             view: WebView?,
             request: WebResourceRequest?
         ): Boolean {
-            print(request?.url)
             return super.shouldOverrideUrlLoading(view, request)
         }
 
-//        override fun shouldOverrideUrlLoading(
+        override fun shouldInterceptRequest(
+            view: WebView?,
+            request: WebResourceRequest?
+        ): WebResourceResponse? {
+            return super.shouldInterceptRequest(view, request)
+        }
+
+        //        override fun shouldOverrideUrlLoading(
 //            view: WebView,
 //            url: String
 //        ): Boolean {
