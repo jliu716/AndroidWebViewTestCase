@@ -1,12 +1,12 @@
 package com.jiayil.testwebview
 
+import android.app.Activity
 import android.os.Bundle
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.appcompat.app.AppCompatActivity
 
-
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
     private var browser: WebView? = null
 
@@ -22,5 +22,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private class MyBrowser : WebViewClient() {
+
+        override fun shouldOverrideUrlLoading(
+            view: WebView?,
+            request: WebResourceRequest?
+        ): Boolean {
+            print(request?.url)
+            return super.shouldOverrideUrlLoading(view, request)
+        }
+
+//        override fun shouldOverrideUrlLoading(
+//            view: WebView,
+//            url: String
+//        ): Boolean {
+//            view.loadUrl(url)
+//            return true
+//        }
     }
 }
